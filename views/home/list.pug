@@ -12,28 +12,28 @@ html(lang='en')
       h1.text-heading Adding Events to List
       div
         label(for="eventName").form-label Name of Event
-        input(type="text", class="form-control", id="eventName", name="eventName", required)
+        input(type="text", class="form-control", id="eventName", name="eventName")
       div
         label(for="eventDateTime").form-label Date of Event
         div.input-group.date(id="datetimepicker1", data-target-input="nearest")
-          input(type="text", class="form-control datetimepicker-input", data-target="#datetimepicker1", id="eventDateTime", name="eventDateTime", required)
+          input(type="text", class="form-control datetimepicker-input", data-target="#datetimepicker1", id="eventDateTime", name="eventDateTime")
           div.input-group-append(data-target="#datetimepicker1", data-toggle="datetimepicker")
       div
-        label(for="venue").form-label Venue
-        input(type="text", class="form-control", id="venue", name="venue", required)
+        label(for="venue").form-label Location of Event
+        input(type="text", class="form-control", id="venue", name="venue")
       div
-        label(for="contactPhone").form-label Contact Phone
-        input(type="tel", class="form-control", id="contactPhone", name="contactPhone", required)
+        label(for="contactPhone").form-label Phone Number
+        input(type="tel", class="form-control", id="contactPhone", name="contactPhone")
       div
         label(for="seat").form-label Seat Number
         input(type="text", class="form-control", id="seat", name="seat", required)
       div
         label(for="description").form-label Brief description
-        textarea.form-control(id="description", name="description", rows="4", cols="50")
-      button(type="submit", class="btn btn-success", onclick="submitForm('#{mode}')") Add
+        textarea.form-control(id="description", name="description", rows="4", cols="50" placeholder="Write a brief description about event")
+      button(type="submit", class="btn btn-add", onclick="submitForm('#{mode}')") #{mode}
 
       span &nbsp;
-      button(type="button", class="btn btn-primary", onclick="window.location.href='/index.html'") Back to list
+      button(type="button", class="btn btn-home", onclick="window.location.href='/index.html'") Home page
 
   script.
     const format = 'DD/MM/YYYY HH:mm';
@@ -58,15 +58,21 @@ html(lang='en')
       document.getElementById('venue').value = eventData.venue || '';
       document.getElementById('contactPhone').value = eventData.contactPhone || '';
       document.getElementById('seat').value = eventData.seat || '';
+      document.getElementById('description').value = eventData.description || '';
+
     }
 
     function submitForm() {
+    
+
+      
       const eventData = {
         eventName: document.getElementById('eventName').value,
         eventDateTime: document.getElementById('eventDateTime').value,
         venue: document.getElementById('venue').value,
         contactPhone: document.getElementById('contactPhone').value,
         seat: document.getElementById('seat').value,
+        description: document.getElementById('description').value,
       };
     
       const url = "#{mode}" === "Update" ? `/api/ticket/${!{JSON.stringify(eventData || {})}.id}` : '/api/ticket';

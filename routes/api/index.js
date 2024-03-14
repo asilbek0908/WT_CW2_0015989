@@ -1,9 +1,14 @@
-const express = require('express')
-const ticket_router = require('./ticket')
+// Importing the required module
+const express = require("express");
 
-const router = express.Router()
+// Importing the ticket router
+const ticketRouter = require("./ticket");
 
-// registering child routers
-router.use('/ticket', ticket_router)
+// Creating a new router instance
+const router = express.Router();
 
-module.exports = router
+// Defining route handling
+router.use("/ticket", ticketRouter);
+
+// Exporting the router instance
+module.exports = router;

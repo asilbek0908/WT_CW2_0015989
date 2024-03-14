@@ -1,9 +1,14 @@
-const express = require('express')
-const home_router = require('./home')
+// Importing the required module
+const express = require("express");
 
-const router = express.Router()
+// Importing the home router
+const homeRouter = require("./home");
 
-// registering child routers
-router.use('/', home_router)
+// Creating a new router instance
+const router = express.Router();
 
-module.exports = router
+// Defining route handling
+router.use("/", homeRouter);
+
+// Exporting the router instance
+module.exports = router;

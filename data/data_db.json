@@ -1,0 +1,35 @@
+[
+    {
+        "id": "wEel",
+        "ticket": {
+            "eventName": "Navruz Holiday",
+            "eventDateTime": "14/03/2024 09:34",
+            "venue": "Humo arena",
+            "contactPhone": "+998919779202",
+            "description": "Natioanal HOLIDAY",
+            "seat": "78"
+        }
+    },
+    {
+        "id": "YFq0",
+        "ticket": {
+            "eventName": "New Year ball",
+            "eventDateTime": "12/06/2024 11:41",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "23",
+            "description": "Party for New Year eve"
+        }
+    },
+    {
+        "id": "OoCr",
+        "ticket": {
+            "eventName": "Wedding day",
+            "eventDateTime": "12/03/2024 00:22",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "7",
+            "description": "Marries and Jonas wedding day\n"
+        }
+    }
+]

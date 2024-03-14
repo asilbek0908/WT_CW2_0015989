@@ -1,16 +1,29 @@
-const ticket_service = require('../../../services/ticket')
+// Importing the ticket service
+const ticketService = require("../../../services/ticket");
 
-const home_controller = {
-    index: async (req, res) =>{
-        res.render('home');
-    },
-    add: async (req, res) =>{
-        res.render('home/add_update', { mode: 'Add' });
-    },
-    update: async (req, res) =>{
-        const eventData = await ticket_service.getById(req.params.id);
-        res.render('home/add_update', { mode: 'Update', eventData: eventData });
-    }
+// Defining the home controller object
+const homeController = {
+  // Handler for rendering the index page
+  index: async (req, res) => {
+    // Rendering the home page
+    res.render("home/home");
+  },
+
+  // Handler for rendering the add page
+  add: async (req, res) => {
+    // Rendering the list page in "Add" mode
+    res.render("home/list", { mode: "Add" });
+  },
+
+  // Handler for rendering the update page
+  update: async (req, res) => {
+    // Geting the event data by ID
+    const eventData = await ticketService.getById(req.params.id);
+
+    // Rendering the list page in "Update" mode with event data
+    res.render("home/list", { mode: "Update", eventData: eventData });
+  },
 };
-  
-module.exports = home_controller;
+
+// Exporting the home controller object
+module.exports = homeController;
