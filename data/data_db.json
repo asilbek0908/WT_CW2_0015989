@@ -1,68 +1,24 @@
 [
     {
-        "id": "Mswb",
+        "id": "9188",
         "ticket": {
-            "eventName": "Wedding day",
-            "eventDateTime": "03/11/2024 00:22",
-            "venue": "Tashkent City",
-            "contactPhone": "+998919779202",
-            "seat": "8888",
-            "description": "hello"
-        }
-    },
-    {
-        "id": "zSt2",
-        "ticket": {
-            "eventName": "New Year ball",
-            "eventDateTime": "14/03/2024 16:18",
-            "venue": "Tashkent City",
-            "contactPhone": "+998919779202",
-            "seat": "7",
-            "description": "dqedqd"
-        }
-    },
-    {
-        "id": "GoXK",
-        "ticket": {
-            "eventName": "New Year ball",
+            "eventName": "Party Day",
             "eventDateTime": "12/06/2024 11:41",
             "venue": "Tashkent City",
             "contactPhone": "+998919779202",
             "seat": "4",
-            "description": "new year eve party\n"
+            "description": "sas"
         }
     },
     {
-        "id": "mwho",
+        "id": "lm0t",
         "ticket": {
             "eventName": "New Year ball",
-            "eventDateTime": "12/06/2024 11:41",
+            "eventDateTime": "14/03/2024 17:05",
             "venue": "Tashkent City",
-            "contactPhone": "+998919779202",
-            "seat": "4",
-            "description": "cdssdcs"
-        }
-    },
-    {
-        "id": "w2jt",
-        "ticket": {
-            "eventName": "New Year ball",
-            "eventDateTime": "12/06/2024 11:41",
-            "venue": "Tashkent City",
-            "contactPhone": "+998919779202",
-            "seat": "78",
-            "description": "cnmdckjlw"
-        }
-    },
-    {
-        "id": "GQcP",
-        "ticket": {
-            "eventName": "New Year ball",
-            "eventDateTime": "12/06/2024 11:41",
-            "venue": "Humo Arena",
             "contactPhone": "+998919779202",
             "seat": "3",
-            "description": "kfmlsfgs"
+            "description": "sdasda"
         }
     }
 ]

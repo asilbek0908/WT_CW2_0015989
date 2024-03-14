@@ -1,6 +1,6 @@
 ## About the App
 
-This web application serves as a comprehensive tool for managing events efficiently. Whether it's scheduling meetings, organizing conferences, or planning social gatherings, this app streamlines the process, enabling users to handle various event-related tasks seamlessly. With a user-friendly interface and robust features, users can easily add new events, update existing ones, and browse through a curated list of upcoming events.
+This web application serves as a comprehensive tool for managing events efficiently. Whether it's scheduling meetings, organizing conferences, or planning social gatherings, this app streamlines the process, enabling users to handle various event-related tasks seamlessly. With a user-friendly interface and robust features, users can easily add new events, update existing ones, and browse through a curated list of upcoming events. And User can also search events by name.
 
 ## Running the App Locally
 

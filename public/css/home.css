@@ -116,3 +116,36 @@ label {
   margin-top: 200px;
   font-size: 30px;
 }
+
+.search {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.form-search {
+  font-size: 20px;
+}
+
+.search-input {
+  outline: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-search {
+  padding: 10px;
+  background-color: blueviolet;
+  color: #fff;
+  transition: all 0.2s linear;
+}
+
+.btn-search:hover {
+  transform: translateY(-3px);
+}
+
+.btn-search:focus {
+  transform: translateY(3px);
+}

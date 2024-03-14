@@ -1,3 +1,4 @@
+//- Including the links.pug file
 include ../links.pug
 doctype html
 html(lang='en')
@@ -14,6 +15,11 @@ html(lang='en')
           h1 List of Events
         .add-btn
           a.btn.btn-add(href='/add', role='button') Schedule Event
+        //- Search form
+        div.search
+          label(for="searchEvent").form-search Search Event
+          input(type="text", class="search-input"  id="searchEvent", name="searchEvent", placeholder="Enter event name")
+          button(type="button", class="btn btn-search", onclick="searchEvent()") Search
       .events
         ul.list-group
           li.list-group-title ID
@@ -27,12 +33,27 @@ html(lang='en')
     p.text
       | This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service
     script.
+      // Function to handle search event
+      function searchEvent() {
+        const searchValue = document.getElementById('searchEvent').value.toLowerCase();
+        const eventItems = document.querySelectorAll('.list-group2');
+
+        eventItems.forEach(item => {
+          const eventName = item.children[1].innerText.toLowerCase();
+          if (eventName.includes(searchValue)) {
+            item.style.display = 'block'; // Show the event item if it matches the search query
+          } else {
+            item.style.display = 'none'; // Hide the event item if it does not match the search query
+          }
+        });
+      }
+
       document.addEventListener('DOMContentLoaded', function () {
         axios
           .get('/api/ticket')
           .then(function (response) {
             const tickets = response.data;
-             const events = document.querySelector('.events');
+            const events = document.querySelector('.events');
             tickets.forEach((t) => {
               const ticket = t.ticket;
               const listItem = document.createElement('ul');
@@ -47,7 +68,7 @@ html(lang='en')
                 <li>${ticket.seat}</li>
                 <li class='list-buttons'>
                   <button class="btn btn-update" data-id="${t.id}" onclick="window.location.href='/update/${t.id}'">Update</button>
-                  <button class='btn  btn-remove' data-id='${t.id}'>Remove</button>
+                  <button class='btn btn-remove' data-id='${t.id}'>Remove</button>
                 </li>
               `;
               events.appendChild(listItem);
@@ -57,7 +78,6 @@ html(lang='en')
             console.error('Error fetching tickets:', error);
           });
 
-        
         document.addEventListener('click', function(event) {
           if (event.target && event.target.classList.contains('btn-remove')) {
             const ticketId = event.target.getAttribute('data-id');
