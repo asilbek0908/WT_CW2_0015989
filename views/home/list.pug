@@ -14,31 +14,37 @@ html(lang='en')
       //- Name of Event
       div
         label(for="eventName").form-label Name of Event
-        input(type="text", class="form-control", id="eventName", name="eventName")
+        input(type="text", class="form-control", id="eventName", name="eventName", required)
+        span(class="error-message" id="eventNameError") Name of Event is required
       //- Date of Event
       div
         label(for="eventDateTime").form-label Date of Event
         div.input-group.date(id="datetimepicker1", data-target-input="nearest")
-          input(type="text", class="form-control datetimepicker-input", data-target="#datetimepicker1", id="eventDateTime", name="eventDateTime")
+          input(type="text", class="form-control datetimepicker-input", data-target="#datetimepicker1", id="eventDateTime", name="eventDateTime", required)
           div.input-group-append(data-target="#datetimepicker1", data-toggle="datetimepicker")
+        span(class="error-message" id="eventDateTimeError") Date of Event is required
       //- Location of Event
       div
         label(for="venue").form-label Location of Event
-        input(type="text", class="form-control", id="venue", name="venue")
+        input(type="text", class="form-control", id="venue", name="venue", required)
+        span(class="error-message" id="venueError") Location of Event is required
       //- Phone Number
       div
         label(for="contactPhone").form-label Phone Number
-        input(type="tel", class="form-control", id="contactPhone", name="contactPhone")
+        input(type="tel", class="form-control", id="contactPhone", name="contactPhone", required)
+        span(class="error-message" id="contactPhoneError") Phone Number is required
       //- Seat Number
       div
         label(for="seat").form-label Seat Number
         input(type="text", class="form-control", id="seat", name="seat", required)
+        span(class="error-message" id="seatError") Seat Number is required
       //- Brief description
       div
         label(for="description").form-label Brief description
-        textarea.form-control(id="description", name="description", rows="4", cols="50" placeholder="Write a brief description about event")
+        textarea.form-control(id="description", name="description", rows="4", cols="50", placeholder="Write a brief description about event", required)
+        span(class="error-message" id="descriptionError") Brief description is required
       //- Submit button
-      button(type="submit", class="btn btn-add", onclick="submitForm('#{mode}')") #{mode}
+      button(type="button", class="btn btn-add", onclick="validateForm()") Submit
 
       span &nbsp;
       button(type="button", class="btn btn-home", onclick="window.location.href='/index.html'") Home page
@@ -54,24 +60,74 @@ html(lang='en')
     picker.dates.formatInput = function(date) {
       return moment(date).format(format);
     };
-    
-    if ("#{mode}" === "Update") {
-      const eventData = !{JSON.stringify(eventData || {})}.ticket;
-      document.getElementById('eventName').value = eventData.eventName || '';
 
-      picker.dates.setValue(
-        new tempusDominus.DateTime(moment(eventData.eventDateTime, format))
-      );
-
-      document.getElementById('venue').value = eventData.venue || '';
-      document.getElementById('contactPhone').value = eventData.contactPhone || '';
-      document.getElementById('seat').value = eventData.seat || '';
-      document.getElementById('description').value = eventData.description || '';
-
+    //- Function to populate form fields with existing data in "Update" mode
+    function populateForm() {
+      if ("#{mode}" === "Update") {
+        const eventData = !{JSON.stringify(eventData || {})}.ticket;
+        document.getElementById('eventName').value = eventData.eventName || '';
+        document.getElementById('eventDateTime').value = eventData.eventDateTime || '';
+        document.getElementById('venue').value = eventData.venue || '';
+        document.getElementById('contactPhone').value = eventData.contactPhone || '';
+        document.getElementById('seat').value = eventData.seat || '';
+        document.getElementById('description').value = eventData.description || '';
+      }
     }
-
+    
+    function validateForm() {
+      const eventName = document.getElementById('eventName').value;
+      const eventDateTime = document.getElementById('eventDateTime').value;
+      const venue = document.getElementById('venue').value;
+      const contactPhone = document.getElementById('contactPhone').value;
+      const seat = document.getElementById('seat').value;
+      const description = document.getElementById('description').value;
+      
+      const eventNameError = document.getElementById('eventNameError');
+      const eventDateTimeError = document.getElementById('eventDateTimeError');
+      const venueError = document.getElementById('venueError');
+      const contactPhoneError = document.getElementById('contactPhoneError');
+      const seatError = document.getElementById('seatError');
+      const descriptionError = document.getElementById('descriptionError');
+      
+      //- Resets error messages
+      eventNameError.style.display = 'none';
+      eventDateTimeError.style.display = 'none';
+      venueError.style.display = 'none';
+      contactPhoneError.style.display = 'none';
+      seatError.style.display = 'none';
+      descriptionError.style.display = 'none';
+      
+      //- Checks if fields are empty
+      if (!eventName) {
+        eventNameError.style.display = 'block';
+        return;
+      }
+      if (!eventDateTime) {
+        eventDateTimeError.style.display = 'block';
+        return;
+      }
+      if (!venue) {
+        venueError.style.display = 'block';
+        return;
+      }
+      if (!contactPhone) {
+        contactPhoneError.style.display = 'block';
+        return;
+      }
+      if (!seat) {
+        seatError.style.display = 'block';
+        return;
+      }
+      if (!description) {
+        descriptionError.style.display = 'block';
+        return;
+      }
+      
+      //- If all fields are filled, submits the form
+      submitForm();
+    }
+    
     function submitForm() {
-  
       const eventData = {
         eventName: document.getElementById('eventName').value,
         eventDateTime: document.getElementById('eventDateTime').value,
@@ -96,3 +152,6 @@ html(lang='en')
             alert(error);
         });
     }
+
+    //- Calling the populateForm function when the page loads
+    populateForm();

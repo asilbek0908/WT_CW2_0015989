@@ -28,6 +28,10 @@ body {
   font-weight: bold;
 }
 
+div {
+  margin-top: 20px;
+}
+
 .form-control {
   width: 100%;
   padding: 10px;
@@ -45,6 +49,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   transition: all 0.1s linear;
+  margin-top: 20px;
 }
 
 .btn-add {

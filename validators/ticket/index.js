@@ -20,7 +20,7 @@ const validateEventDateTimeFormat = body("eventDateTime")
   .withMessage('Date and time should be in the format "DD/MM/YYYY HH:mm"');
 
 // Validation middleware for contact phone format
-const validateContactPhoneFormat = body("phoneNumber")
+const validateContactPhoneFormat = body("contactPhone")
   .notEmpty()
   .withMessage("Please provide a contact phone number")
   .matches(/^\+998\d{9}$/)
@@ -38,16 +38,16 @@ const validateTextarea = body("description")
 // Object containing various ticket validations
 const ticketValidations = {
   eventName: [
-    body("nameOfEvent")
+    body("eventName")
       .notEmpty()
       .withMessage("Please provide an event name")
       .isLength({ min: 8, max: 255 })
       .withMessage("Event name should be between 8 and 255 characters"),
   ],
   venue: [
-    body("location").notEmpty().withMessage("Please provide an event venue"),
+    body("venue").notEmpty().withMessage("Please provide an event venue"),
   ],
-  seat: [body("seatNumber").notEmpty().withMessage("Please provide a seat")],
+  seat: [body("seat").notEmpty().withMessage("Please provide a seat")],
   id: [param("id").custom(validateId)],
 };
 
