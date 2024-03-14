@@ -11,17 +11,6 @@
         }
     },
     {
-        "id": "YFq0",
-        "ticket": {
-            "eventName": "New Year ball",
-            "eventDateTime": "12/06/2024 11:41",
-            "venue": "Tashkent City",
-            "contactPhone": "+998919779202",
-            "seat": "23",
-            "description": "Party for New Year eve"
-        }
-    },
-    {
         "id": "OoCr",
         "ticket": {
             "eventName": "Wedding day",
@@ -30,6 +19,39 @@
             "contactPhone": "+998919779202",
             "seat": "7",
             "description": "Marries and Jonas wedding day\n"
+        }
+    },
+    {
+        "id": "Mswb",
+        "ticket": {
+            "eventName": "New Year ball",
+            "eventDateTime": "12/06/2024 11:41",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "4",
+            "description": "dnvsvkvd"
+        }
+    },
+    {
+        "id": "zSt2",
+        "ticket": {
+            "eventName": "Navruz Holiday",
+            "eventDateTime": "12/06/2024 11:41",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "3",
+            "description": "nvsbkjdvs\n"
+        }
+    },
+    {
+        "id": "EJMW",
+        "ticket": {
+            "eventName": "New Year ball",
+            "eventDateTime": "12/03/2024 15:46",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "4",
+            "description": "dbvhldsbl"
         }
     }
 ]

@@ -1,3 +1,4 @@
+//- Including the links.pug file
 include ../links.pug
 doctype html
 html(lang='en')
@@ -10,26 +11,33 @@ html(lang='en')
   body
     .container
       h1.text-heading Adding Events to List
+      //- Name of Event
       div
         label(for="eventName").form-label Name of Event
         input(type="text", class="form-control", id="eventName", name="eventName")
+      //- Date of Event
       div
         label(for="eventDateTime").form-label Date of Event
         div.input-group.date(id="datetimepicker1", data-target-input="nearest")
           input(type="text", class="form-control datetimepicker-input", data-target="#datetimepicker1", id="eventDateTime", name="eventDateTime")
           div.input-group-append(data-target="#datetimepicker1", data-toggle="datetimepicker")
+      //- Location of Event
       div
         label(for="venue").form-label Location of Event
         input(type="text", class="form-control", id="venue", name="venue")
+      //- Phone Number
       div
         label(for="contactPhone").form-label Phone Number
         input(type="tel", class="form-control", id="contactPhone", name="contactPhone")
+      //- Seat Number
       div
         label(for="seat").form-label Seat Number
         input(type="text", class="form-control", id="seat", name="seat", required)
+      //- Brief description
       div
         label(for="description").form-label Brief description
         textarea.form-control(id="description", name="description", rows="4", cols="50" placeholder="Write a brief description about event")
+      //- Submit button
       button(type="submit", class="btn btn-add", onclick="submitForm('#{mode}')") #{mode}
 
       span &nbsp;
@@ -63,9 +71,7 @@ html(lang='en')
     }
 
     function submitForm() {
-    
-
-      
+  
       const eventData = {
         eventName: document.getElementById('eventName').value,
         eventDateTime: document.getElementById('eventDateTime').value,

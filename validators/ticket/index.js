@@ -1,7 +1,7 @@
 const { body, param, validationResult } = require("express-validator");
 const ticketService = require("../../services/ticket");
 
-// Function to validate if ticket with given id exists
+// Function to validate ticket ID
 const validateId = async (id) => {
   const exists = await ticketService.getById(id);
   if (!exists) {
@@ -9,61 +9,70 @@ const validateId = async (id) => {
   }
 };
 
-// Validation middleware for event date time format
+// Validation middleware for event date and time format
 const validateEventDateTimeFormat = body("eventDateTime")
   .notEmpty()
-  .withMessage("Event date and time cannot be empty")
+  .withMessage("Please provide a valid event date and time")
   .matches(
     /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d\s([01][0-9]|2[0-3]):([0-5][0-9])$/,
     "g"
   )
-  .withMessage(
-    'Please enter a valid date and time in the format "DD/MM/YYYY HH:mm".'
-  );
+  .withMessage('Date and time should be in the format "DD/MM/YYYY HH:mm"');
 
 // Validation middleware for contact phone format
-const validateContactPhoneFormat = body("contactPhone")
+const validateContactPhoneFormat = body("phoneNumber")
   .notEmpty()
-  .withMessage("Contact phone number cannot be empty")
+  .withMessage("Please provide a contact phone number")
   .matches(/^\+998\d{9}$/)
   .withMessage(
-    "Invalid phone number format. It must start with +998 followed by 9 digits."
+    "Please provide a valid phone number starting with +998 followed by 9 digits"
   );
 
-// Object containing common validation checks for ticket properties
+// Validation middleware for textarea
+const validateTextarea = body("description")
+  .notEmpty()
+  .withMessage("Message cannot be empty")
+  .isLength({ max: 1000 })
+  .withMessage("Message cannot exceed 1000 characters");
+
+// Object containing various ticket validations
 const ticketValidations = {
   eventName: [
-    body("eventName")
+    body("nameOfEvent")
       .notEmpty()
-      .withMessage("Event name cannot be empty")
+      .withMessage("Please provide an event name")
       .isLength({ min: 8, max: 255 })
-      .withMessage("Event name must be between 8 and 255 characters long"),
+      .withMessage("Event name should be between 8 and 255 characters"),
   ],
-  venue: [body("venue").notEmpty().withMessage("Event venue cannot be empty")],
-  seat: [body("seat").notEmpty().withMessage("Seat selection cannot be empty")],
+  venue: [
+    body("location").notEmpty().withMessage("Please provide an event venue"),
+  ],
+  seat: [body("seatNumber").notEmpty().withMessage("Please provide a seat")],
   id: [param("id").custom(validateId)],
 };
 
-// Validation middleware for adding a ticket
+// Middleware for adding a ticket with validations
 const addTicketValidation = () => [
   ...ticketValidations.eventName,
   validateEventDateTimeFormat,
   ...ticketValidations.venue,
   validateContactPhoneFormat,
+  validateTextarea, // Include the textarea validation here
   ...ticketValidations.seat,
 ];
 
-// Validation middleware for updating a ticket
+// Middleware for updating a ticket with validations
 const updateTicketValidation = () => [
   ...ticketValidations.id,
   ...ticketValidations.eventName,
   validateEventDateTimeFormat,
   ...ticketValidations.venue,
   validateContactPhoneFormat,
+  validateTextarea, // Include the textarea validation here
   ...ticketValidations.seat,
 ];
 
-// Validation middleware for deleting a ticket
+// Middleware for deleting a ticket with validations
 const deleteTicketValidation = () => [...ticketValidations.id];
 
 // Middleware to handle validation errors
