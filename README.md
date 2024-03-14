@@ -16,9 +16,9 @@ User must make sure that they have the following things installed on their local
    - git clone (Https)
 
 - cd (project directory)
-- npm install (for installing node modules)
+- npm install (for installing node modules and installing packages in dependencies)
 - npm start (to run program)
 
 ### Links
 
--https://github.com/asilbek0908/WT_CW2_0015989.git
+-https://github.com/asilbek0908/WT_CW2_0015989.git -https://wt-cw-2-0015989.vercel.app/
