@@ -1,0 +1,69 @@
+include ../head.pug
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Lists
+    link(rel='stylesheet' href='/css/styles.css')
+  body
+    .container
+      div
+        .header
+          h1 List of Events
+        .list
+          a.btn.btn-success(href='/add', role='button') Add Event
+      .events
+        ul.list-group
+          li.list-group-title ID
+          li.list-group-title Event Name
+          li.list-group-title Event DateTime
+          li.list-group-title Venue
+          li.list-group-title Contact Phone
+          li.list-group-title Seat
+          li.list-group-title Actions
+    p.text
+      | This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service
+    script.
+      document.addEventListener('DOMContentLoaded', function () {
+        axios
+          .get('/api/ticket')
+          .then(function (response) {
+            const tickets = response.data;
+            const list = document.querySelector('.events ul.list-group');
+            tickets.forEach((t) => {
+              const ticket = t.ticket;
+              const listItem = document.createElement('ul');
+              listItem.classList.add('list-group-item');
+              listItem.innerHTML = `
+                <li>${t.id}</li>
+                <li>${ticket.eventName}</li>
+                <li>${ticket.eventDateTime}</li>
+                <li>${ticket.venue}</li>
+                <li>${ticket.contactPhone}</li>
+                <li>${ticket.seat}</li>
+                <li class='list-buttons'>
+                  <button class="btn btn-primary btn-sm" data-id="${t.id}" onclick="window.location.href='/update/${t.id}'">Update</button>
+                  <button class='btn btn-danger btn-sm delete-button' data-id='${t.id}'>Delete</button>
+                </li>
+              `;
+              list.appendChild(listItem);
+            });
+          })
+          .catch(function (error) {
+            console.error('Error fetching tickets:', error);
+          });
+
+        // Use event delegation for delete buttons
+        document.addEventListener('click', function(event) {
+          if (event.target && event.target.classList.contains('btn-danger')) {
+            const ticketId = event.target.getAttribute('data-id');
+            axios.delete(`/api/ticket/${ticketId}`).then(function(response) {
+              alert('Deleted successfully');
+              location.href = '/';
+            }).catch(function(error) {
+              console.error('Error deleting ticket:', error);
+            });
+          }
+        });
+      });

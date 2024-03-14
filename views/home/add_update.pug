@@ -1,0 +1,87 @@
+include ../head.pug
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Adding Page
+    link(rel='stylesheet' href='/css/styles.css')
+  body
+    .container
+      h1.text-heading Adding Events to List
+      div
+        label(for="eventName").form-label Name of Event
+        input(type="text", class="form-control", id="eventName", name="eventName", required)
+      div
+        label(for="eventDateTime").form-label Date of Event
+        div.input-group.date(id="datetimepicker1", data-target-input="nearest")
+          input(type="text", class="form-control datetimepicker-input", data-target="#datetimepicker1", id="eventDateTime", name="eventDateTime", required)
+          div.input-group-append(data-target="#datetimepicker1", data-toggle="datetimepicker")
+            div.input-group-text
+              i.fas.fa-calendar-alt
+      div
+        label(for="venue").form-label Venue
+        input(type="text", class="form-control", id="venue", name="venue", required)
+      div
+        label(for="contactPhone").form-label Contact Phone
+        input(type="tel", class="form-control", id="contactPhone", name="contactPhone", required)
+      div
+        label(for="seat").form-label Seat Number
+        input(type="text", class="form-control", id="seat", name="seat", required)
+      div
+        label(for="description").form-label Brief description
+        textarea.form-control(id="description", name="description", rows="4", cols="50")
+      button(type="submit", class="btn btn-success", onclick="submitForm('#{mode}')") Add
+
+      span &nbsp;
+      button(type="button", class="btn btn-primary", onclick="window.location.href='/index.html'") Back to list
+
+  script.
+    const format = 'DD/MM/YYYY HH:mm';
+    const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
+      localization: {
+        'locale': 'fr'
+      }
+    });
+    
+    picker.dates.formatInput = function(date) {
+      return moment(date).format(format);
+    };
+    
+    if ("#{mode}" === "Update") {
+      const eventData = !{JSON.stringify(eventData || {})}.ticket;
+      document.getElementById('eventName').value = eventData.eventName || '';
+
+      picker.dates.setValue(
+        new tempusDominus.DateTime(moment(eventData.eventDateTime, format))
+      );
+
+      document.getElementById('venue').value = eventData.venue || '';
+      document.getElementById('contactPhone').value = eventData.contactPhone || '';
+      document.getElementById('seat').value = eventData.seat || '';
+    }
+
+    function submitForm() {
+      const eventData = {
+        eventName: document.getElementById('eventName').value,
+        eventDateTime: document.getElementById('eventDateTime').value,
+        venue: document.getElementById('venue').value,
+        contactPhone: document.getElementById('contactPhone').value,
+        seat: document.getElementById('seat').value,
+      };
+    
+      const url = "#{mode}" === "Update" ? `/api/ticket/${!{JSON.stringify(eventData || {})}.id}` : '/api/ticket';
+      const method = "#{mode}" === "Update" ? 'put' : 'post';
+    
+      axios[method](url, eventData)
+        .then(response => {
+          alert('Success!');
+          location.href = '/';
+        })
+        .catch(error => {
+          if(error.response)
+            alert(JSON.stringify(error.response.data.errors));
+          else
+            alert(error);
+        });
+    }
