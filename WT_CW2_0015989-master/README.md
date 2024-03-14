@@ -21,10 +21,4 @@ User must make sure that they have the following things installed on their local
 
 ### Links
 
-### Github Link
-
-https://github.com/asilbek0908/WT_CW2_0015989.git.
-
-### AWS Link
-
-http://ec2-16-170-110-200.eu-north-1.compute.amazonaws.com:3000/ (first run npm start)
+-https://github.com/asilbek0908/WT_CW2_0015989.git -https://wt-cw-2-0015989.vercel.app/

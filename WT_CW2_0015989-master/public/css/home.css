@@ -1,0 +1,151 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1516473344662-e3a32406ecad?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.container {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+label {
+  font-weight: bold;
+}
+.form-control {
+  margin-bottom: 15px;
+}
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  transition: all 0.1s linear;
+}
+
+.btn-add {
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-update {
+  background-color: rgb(119, 119, 170);
+  color: #fff;
+}
+
+.btn-update:hover {
+  transform: translateY(-3px);
+}
+.btn-update:focus {
+  transform: translateY(3px);
+}
+
+.btn-remove {
+  background-color: rgb(204, 7, 7);
+  color: #fff;
+}
+
+.btn-remove:hover {
+  transform: translateY(-3px);
+}
+.btn-remove:focus {
+  transform: translateY(3px);
+}
+
+.list-group {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.list-group-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.add-btn {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+}
+
+.add-btn:focus {
+  transform: translateY(2px);
+}
+
+.list-group2 {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.list-group-item:not(:last-child) {
+  margin-right: 70px;
+}
+
+.list-buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.text {
+  color: #fff;
+  margin-top: 200px;
+  font-size: 30px;
+}
+
+.search {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.form-search {
+  font-size: 20px;
+}
+
+.search-input {
+  outline: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-search {
+  padding: 10px;
+  background-color: blueviolet;
+  color: #fff;
+  transition: all 0.2s linear;
+}
+
+.btn-search:hover {
+  transform: translateY(-3px);
+}
+
+.btn-search:focus {
+  transform: translateY(3px);
+}

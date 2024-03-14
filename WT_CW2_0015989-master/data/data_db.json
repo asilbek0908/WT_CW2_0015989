@@ -1,0 +1,24 @@
+[
+    {
+        "id": "9188",
+        "ticket": {
+            "eventName": "Party Day",
+            "eventDateTime": "12/06/2024 11:41",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "4",
+            "description": "sas"
+        }
+    },
+    {
+        "id": "lm0t",
+        "ticket": {
+            "eventName": "New Year ball",
+            "eventDateTime": "14/03/2024 17:05",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "3",
+            "description": "sdasda"
+        }
+    }
+]

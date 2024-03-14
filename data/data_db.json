@@ -1,16 +1,5 @@
 [
     {
-        "id": "9188",
-        "ticket": {
-            "eventName": "Party Day",
-            "eventDateTime": "12/06/2024 11:41",
-            "venue": "Tashkent City",
-            "contactPhone": "+998919779202",
-            "seat": "4",
-            "description": "sas"
-        }
-    },
-    {
         "id": "lm0t",
         "ticket": {
             "eventName": "New Year ball",
@@ -19,6 +8,17 @@
             "contactPhone": "+998919779202",
             "seat": "3",
             "description": "sdasda"
+        }
+    },
+    {
+        "id": "HOOR",
+        "ticket": {
+            "eventName": "New Year ball",
+            "eventDateTime": "03/12/2024 00:22",
+            "venue": "Tashkent City",
+            "contactPhone": "+998919779202",
+            "seat": "78",
+            "description": "sdcsddf"
         }
     }
 ]
